@@ -1,0 +1,1 @@
+Unifit is een project dat wordt gemaakt om het middelbaar onderwijs universeel te maken en voor iedere student passend doormiddel van gepersonaliseerde leerwegen gebaseerd op leerniveau en evt. aandoeningen zoals ADHD, autisme of dyslexie
