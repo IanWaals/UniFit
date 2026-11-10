@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
         <meta charset="utf-8">
         <meta name="Version" content="1.0">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Unifit – Log in portal</title>
-        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-        <link rel="stylesheet" href="/css/login-page.css">
-        <script type="module" src="/js/login.js"></script>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <link rel="stylesheet" href="css/login-page.css">
+        <script type="module" src="js/login.js"></script>
     </head>
 
     <body>
@@ -29,21 +29,21 @@
                        placeholder="Your password" autocomplete="current-password" required>
                 </div>
 
-                <div>
+                <div id="kmsi-row">
                     <label for="kmsi">Keep me Signed in</label>
-                    <input class="checkbox" type="checkbox" id="ksmi" name="kmsi">
+                    <input class="checkbox" type="checkbox" id="kmsi" name="kmsi">
                 </div>
 
-                <p id="form-status" role="statusmsg" aria-live="polite"></p>
+                <p id="form-status" role="status" aria-live="polite"></p>
 
                 <div id="submission-area">
                     <button type="submit" class="login-btn login-btn-primary">Log in</button>
-                    <a href="/signup.html" class="login-btn">Sign up</a>
+                    <a href="signup.html" id="signup-link" class="login-btn">Sign up</a>
                 </div>
             </form>
 
             <p id="passwd-rst-str">
-                Forgot your password? Click <a href="/resetpass.html">here </a> to recover it.
+                Forgot your password? Click <a href="resetpass.html">here</a> to recover it.
             </p>
 
              <p id="copyright-str">&copy; 2026 Unifit.org</p>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unifit – Portal</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <script type="module" src="js/portal.js"></script>
+    </head>
+
+    <body>
+        <!-- Hidden until portal.js has verified the session with Supabase. -->
+        <main id="portal" hidden>
+            <h1>Welcome to Unifit</h1>
+            <p>Signed in as <strong id="user-email"></strong></p>
+            <button type="button" id="logout-btn">Log out</button>
+        </main>
+    </body>
+
+</html>
