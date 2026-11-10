@@ -14,9 +14,12 @@
 #define NFC_POST_WAKE_POLL_MS 2500
 #define NFC_WAIT_TAG_GONE_MS  10000
 #define NFC_ARM_RETRIES       3
+const unsigned long INACTIVITY_TIMEOUT = 120000;
+unsigned long lastActivityTime = 0;
 
 #define LEDPIN_GREEN 25
 #define LEDPIN_RED   26
+
 
 Adafruit_PN532 nfc(PN532_IRQ, PN532_RST);
 
@@ -224,7 +227,7 @@ void setup(void) {
 
   const esp_sleep_wakeup_cause_t cause = esp_sleep_get_wakeup_cause();
   const bool coldBoot = (cause == ESP_SLEEP_WAKEUP_UNDEFINED);
-
+  lastActivityTime = millis();
   prepareLeds();
 
   Serial.begin(115200);
@@ -262,6 +265,23 @@ void setup(void) {
   }
 
   waitForTagGone();
+  Serial.println("Actieve modus — deep sleep na 2 min inactiviteit.");
+}
+
+void loop(void) {
+  if ((millis() - lastActivityTime) < INACTIVITY_TIMEOUT) {
+    uint8_t pollUid[7] = {0};
+    uint8_t pollUidLength = 0;
+    if (readTagOnce(pollUid, &pollUidLength)) {
+      lastActivityTime = millis();
+      notifyIfNewTag(pollUid, pollUidLength);
+      waitForTagGone();
+    }
+    delay(50);
+    return;
+  }
+
+  Serial.println("Geen activiteit gedetecteerd in de afgelopen 2 minuten.");
 
   if (!armIrqListenerClean()) {
     // Do not EXT0-sleep with IRQ stuck low (instant wake loop / dead listen)
@@ -271,5 +291,3 @@ void setup(void) {
 
   enterDeepSleepForCard();
 }
-
-void loop(void) {}
