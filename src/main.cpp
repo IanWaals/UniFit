@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include "azure_iot.h"
+#include "config.h"
 #include <Wire.h>
 #include <Adafruit_PN532.h>
 #include <driver/rtc_io.h>
@@ -14,6 +16,7 @@
 #define NFC_POST_WAKE_POLL_MS 2500
 #define NFC_WAIT_TAG_GONE_MS  10000
 #define NFC_ARM_RETRIES       3
+
 const unsigned long INACTIVITY_TIMEOUT = 120000;
 unsigned long lastActivityTime = 0;
 
@@ -99,6 +102,7 @@ static void notifyIfNewTag(const uint8_t *uid, uint8_t uidLength) {
   }
   printUid(uid, uidLength);
   lastUidKey = key;
+  azureSendCardUid(uid, uidLength);
 }
 
 /** Full clean init — call before every read session and before every arm. */
@@ -192,6 +196,7 @@ static void holdRstAndDeepSleep() {
 }
 
 static void enterDeepSleepForCard() {
+  azureDisconnect();
   Serial.println("Deep sleep — wake on card.");
   Serial.flush();
 
@@ -203,6 +208,7 @@ static void enterDeepSleepForCard() {
 }
 
 static void enterTimerOnlySleep(uint32_t sec) {
+  azureDisconnect();
   Serial.printf("Timer sleep %us (no IRQ wake).\n", (unsigned)sec);
   Serial.flush();
   esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_ALL);
