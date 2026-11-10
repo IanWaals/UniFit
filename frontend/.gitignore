@@ -1,0 +1,9 @@
+# Ignore the .vscode folder.
+.vscode/
+.vscode/*
+# Ignore the old folder 
+.old/
+.old/*
+# Ignore the test folder.
+.test/
+.test/*

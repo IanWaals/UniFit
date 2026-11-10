@@ -3,3 +3,6 @@ This repository contains the login page and login logic for the client side. Cre
 
 # Login logic.
 So the page is protected against SQL Injection attacks and password brute force attacks. Alternatively it communicates securely with our backend Supabase running on our webserver that i also manage. The page asks for your username and password. It also allows storing a cookie on browser that makes it so you dont need to login after refreshing the page and having already logged in. 
+
+# Architecture.
+Its primarily a client side application that gets served by our webserver to the browser of the client. It makes use of the supabase javascript module to handle most of the heavy lifting. It makes use of javascript and requests instead of PHP, so its also safe against the PHP2Shell attack method. 
