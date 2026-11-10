@@ -25,18 +25,18 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #d6d6d6;
   display: block;
   transition: 0.3s;
 }
 
 .sidebar a:hover {
-  color: #9CCB8A;
+  color: #4a6b45;
 }
 
 .sidebar a.active {
-  color: #fff;
-  background-color: #9ccb8a;
+  color: #D6d6d6;
+  background-color: #2a3c28;
 }
 
 .sidebar .closebtn {
@@ -50,17 +50,18 @@ body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: #111;
-  color: white;
+  background-color: #202020;
+  color: #d6d6d6;
   padding: 10px 15px;
   border: none;
   
 }
 
 .openbtn:hover {
- background-color: #45a049;
+ background-color: #2a3c28;
  transition: background-color 0.3s;
 }
+
 
 #main {
   transition: margin-left .5s;
