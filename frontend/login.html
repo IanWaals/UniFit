@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="Version" content="1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unifit – Log in portal</title>
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+        <link rel="stylesheet" href="/css/loginpage.css">
+        <script type="module" src="/js/login.js"></script>
+    </head>
+
+    <body>
+
+        <main class="login-box">
+            <h1 id="login-box-title">Please sign in with your Unifit account.</h1>
+
+            <form id="login-form" novalidate>
+                <div>
+                    <label for="email">Username</label>
+                    <input class="usernameinput-box" type="email" id="email" name="email"
+                       placeholder="u123456@unifit.org" autocomplete="username" required>
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+                    <input class="password-input-box" type="password" id="password" name="password"
+                       placeholder="Your password" autocomplete="current-password" required>
+                </div>
+
+                <div>
+                    <label for="kmsi">Keep me Signed in</label>
+                    <input class="checkbox" type="checkbox" id="ksmi" name="kmsi">
+                </div>
+
+                <p id="form-status" role="statusmsg" aria-live="polite"></p>
+
+                <div id="submission-area">
+                    <button type="submit" class="login-btn login-btn-primary">Log in</button>
+                    <a href="/signup.html" class="login-btn">Sign up</a>
+                </div>
+            </form>
+
+            <p id="passwd-rst-str">
+                Forgot your password? Click <a href="/resetpass.html">here </a> to recover it.
+            </p>
+
+             <p id="copyright-str">&copy; 2026 Unifit.org</p>
+
+        </main>
+
+    </body>
+
+</html>

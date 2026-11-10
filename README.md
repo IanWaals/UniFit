@@ -1,0 +1,5 @@
+# Unifit Login portal.
+This repository contains the login page and login logic for the client side. Created for Unifit groups project [Unifit](https://github.com/IanWaals/UniFit) we do for our 1st year 1st semester at Fontys ICT. I am responsible for security, so not only protecting our web application against common attacks, but also creating and engineering the login logic to be as secure and safe as possible. 
+
+# Login logic.
+So the page is protected against SQL Injection attacks and password brute force attacks. Alternatively it communicates securely with our backend Supabase running on our webserver that i also manage. The page asks for your username and password. It also allows storing a cookie on browser that makes it so you dont need to login after refreshing the page and having already logged in. 
