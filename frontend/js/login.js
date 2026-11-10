@@ -29,9 +29,9 @@ const signupLink = document.getElementById('signup-link');
 function loadGuard() {
     try {
         const raw = localStorage.getItem(GUARD_KEY);
-        if (raw) return { tries: 0, lockouts: 0, lockedUntil: 0, ...JSON.parse(raw) };
+        if (raw) return { tries: 0, lockedUntil: 0, ...JSON.parse(raw) };
     } catch { /* ignore corrupt/blocked storage */ }
-    return { tries: 0, lockouts: 0, lockedUntil: 0 };
+    return { tries: 0, lockedUntil: 0 };
 }
 
 function saveGuard(guard) {
@@ -138,17 +138,21 @@ loginForm.addEventListener('submit', async (event) => {
 
         const guard = loadGuard();
         guard.tries++;
-        console.warn(`Incorrect attempt ${guard.tries}/${CONFIG.SECURITY.MAX_TRIES}`);
+        const maxTries = CONFIG.SECURITY.MAX_TRIES;
+        console.warn(guard.tries <= maxTries
+            ? `Incorrect attempt ${guard.tries}/${maxTries}`
+            : `Incorrect attempt ${guard.tries} (lockout after ${maxTries})`);
 
         // Check if the maximum amount of tries has been reached (Flowchart: Is counter {Max_tries} >= 3?)
-        if (guard.tries >= CONFIG.SECURITY.MAX_TRIES) {
-            // Each subsequent lockout lasts longer: BASE + INCREMENT * (previous lockouts).
-            const timeoutSec = CONFIG.SECURITY.BASE_TIMEOUT_SEC
-                + CONFIG.SECURITY.TIMEOUT_INCREMENT_SEC * guard.lockouts;
-            guard.lockouts++;
-            // Keep the counter one below the limit: after a lockout, a single
-            // wrong try immediately triggers the next (longer) lockout.
-            guard.tries = CONFIG.SECURITY.MAX_TRIES - 1;
+        // The counter keeps going up (only a successful login resets it), so after the
+        // first lockout every single wrong try triggers a new, longer lockout.
+        if (guard.tries >= maxTries) {
+            // 3rd wrong try = BASE, 4th = BASE + INCREMENT, 5th = BASE + 2*INCREMENT, ... capped at MAX.
+            const timeoutSec = Math.min(
+                CONFIG.SECURITY.BASE_TIMEOUT_SEC + CONFIG.SECURITY.TIMEOUT_INCREMENT_SEC * (guard.tries - maxTries),
+                CONFIG.SECURITY.MAX_TIMEOUT_SEC,
+            );
+            console.warn(`Locked out for ${timeoutSec} seconds`);
             guard.lockedUntil = Date.now() + timeoutSec * 1000;
             saveGuard(guard);
             startLockoutTimer();

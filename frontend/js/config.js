@@ -18,6 +18,7 @@ export const CONFIG = {
         MAX_TRIES: 3,
         BASE_TIMEOUT_SEC: 30,
         TIMEOUT_INCREMENT_SEC: 30,
+        MAX_TIMEOUT_SEC: 3600, // lockout never lasts longer than 1 hour
         ALLOW_SESSION_COOKIES: true,
         ALLOW_SIGNUP: false
     }
