@@ -20,9 +20,11 @@ const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const rememberInput = document.getElementById('kmsi');
 const rememberRow = document.getElementById('kmsi-row');
+const rememberNote = document.getElementById('kmsi-note');
 const submitButton = loginForm.querySelector('button[type="submit"]');
 const formStatus = document.getElementById('form-status');
 const signupLink = document.getElementById('signup-link');
+const passwordResetText = document.getElementById('passwd-rst-str');
 
 // ---------- Lockout state helpers ----------
 
@@ -56,6 +58,18 @@ async function init() {
     // Check if signup is allowed (parameter in the config file).
     if (!CONFIG.SECURITY.ALLOW_SIGNUP && signupLink) {
         signupLink.style.display = 'none';
+    }
+
+    // Hide the "Forgot your password?" link if password reset is disabled in the config.
+    if (!CONFIG.SECURITY.ALLOW_PASSWORD_RESET && passwordResetText) {
+        passwordResetText.style.display = 'none';
+    }
+
+    // Show a confirmation text next to the checkbox while "Keep me signed in" is ticked.
+    if (rememberInput && rememberNote) {
+        const updateRememberNote = () => { rememberNote.hidden = !rememberInput.checked; };
+        rememberInput.addEventListener('change', updateRememberNote);
+        updateRememberNote(); // browsers can restore the checkbox state after a refresh
     }
 
     // Hide "Keep me signed in" if persistent sessions are disabled in the config.

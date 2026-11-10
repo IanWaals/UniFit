@@ -19,7 +19,8 @@ export const CONFIG = {
         BASE_TIMEOUT_SEC: 30,
         TIMEOUT_INCREMENT_SEC: 30,
         MAX_TIMEOUT_SEC: 3600, // lockout never lasts longer than 1 hour
-        ALLOW_SESSION_COOKIES: true,
-        ALLOW_SIGNUP: false
+        ALLOW_SESSION_COOKIES: true, 
+        ALLOW_SIGNUP: false, // Allow account creation. Set to disabled for now.
+        ALLOW_PASSWORD_RESET: true // Allow password reset. Set to enabled for now.
     }
 };
