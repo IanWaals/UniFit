@@ -251,10 +251,10 @@ bool azureSendCardUid(const uint8_t *uid, uint8_t uidLength) {
   formatUidHex(uid, uidLength, uidHex, sizeof(uidHex));
 
   const time_t now = time(nullptr);
-  char isoTime[32];
-  struct tm tmUtc;
-  gmtime_r(&now, &tmUtc);
-  strftime(isoTime, sizeof(isoTime), "%Y-%m-%dT%H:%M:%SZ", &tmUtc);
+char isoTime[32];
+struct tm tmLocal;
+localtime_r(&now, &tmLocal);
+strftime(isoTime, sizeof(isoTime), "%Y-%m-%dT%H:%M:%S%z", &tmLocal);
 
   JsonDocument doc;
   doc["uid"] = uidHex;
