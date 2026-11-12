@@ -1,11 +1,51 @@
-# Ignore the .vscode folder.
+# ---------------------------------------------
+# Local config / secrets
+# ---------------------------------------------
+# Real config holds the Supabase URL + key. Commit the template only.
+frontend/js/config.js
+!frontend/js/config.js.template
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------
+# Local-only project folders
+# ---------------------------------------------
+frontend/old/
+frontend/test/
+
+# ---------------------------------------------
+# Editors / IDEs
+# ---------------------------------------------
 .vscode/
-.vscode/*
-# Ignore the old folder 
-.frontend/old/
-.frontend/old/*
-# Ignore the test folder.
-.frontend/test/
-.frontend/test/*
-# Ignore the main config. Instead show a template.
-.frontend/js/config.js
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------------------------------------------
+# OS files
+# ---------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------
+# Python (test bridge, http.server)
+# ---------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---------------------------------------------
+# Node (if ever added)
+# ---------------------------------------------
+node_modules/
+npm-debug.log*
+
+# ---------------------------------------------
+# Logs / temp
+# ---------------------------------------------
+*.log
+*.tmp
