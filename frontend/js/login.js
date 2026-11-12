@@ -182,7 +182,11 @@ loginForm.addEventListener('submit', async (event) => {
 
     // 4. Successful login (Flowchart: Welcome back / Unlock portal / Reset counter)
     resetGuard();
-    showStatus('Welcome back! Redirecting...', 'success');
+    console.log(`User: ${result.data?.user?.email ?? email} logged in successfully.`);
+    if (CONFIG.SECURITY.ALLOW_SESSION_COOKIES && rememberInput?.checked) {
+        console.log('Keep me signed in activated.');
+    }
+    showStatus('Welcome back! Logging you in...', 'success');
 
     setTimeout(() => {
         window.location.replace(PORTAL_URL);
