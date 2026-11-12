@@ -16,7 +16,7 @@
         <main class="login-box">
             <h1 id="login-box-title">Please sign in with your Unifit account.</h1>
 
-            <form id="login-form" novalidate>
+            <form id="login-form" method="post" action="#" novalidate>
                 <div>
                     <label for="email">Username</label>
                     <input class="usernameinput-box" type="email" id="email" name="email"
@@ -38,7 +38,8 @@
                 <p id="form-status" role="status" aria-live="polite"></p>
 
                 <div id="submission-area">
-                    <button type="submit" class="login-btn login-btn-primary">Log in</button>
+                    <!-- Disabled until login.js loads: if the JS fails, the form can never fall back to a native submit. -->
+                    <button type="submit" class="login-btn login-btn-primary" disabled>Log in</button>
                     <a href="signup.html" id="signup-link" class="login-btn">Sign up</a>
                 </div>
             </form>

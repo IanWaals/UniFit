@@ -55,6 +55,9 @@ function isLockedOut() {
 // ---------- 1. Page load: check config and active session (Flowchart: Valid session cookie?) ----------
 
 async function init() {
+    // The button ships disabled in the HTML so a failed script load can't submit the form natively.
+    if (submitButton) submitButton.disabled = false;
+
     // Check if signup is allowed (parameter in the config file).
     if (!CONFIG.SECURITY.ALLOW_SIGNUP && signupLink) {
         signupLink.style.display = 'none';
