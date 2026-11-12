@@ -2,10 +2,10 @@
 .vscode/
 .vscode/*
 # Ignore the old folder 
-.old/
-.old/*
+.frontend/old/
+.frontend/old/*
 # Ignore the test folder.
-.test/
-.test/*
+.frontend/test/
+.frontend/test/*
 # Ignore the main config. Instead show a template.
-.js/config.js
+.frontend/js/config.js
