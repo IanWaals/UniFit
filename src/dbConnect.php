@@ -22,7 +22,8 @@ function dbConnect() {
 }
 
 function getStudents() {
-    $stsm = $conn->query("SELECT * FROM students");
+    $conn = dbConnect();
+    $stmt = $conn->query("SELECT * FROM students");
     $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
     print_r($students);
 }
