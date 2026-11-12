@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #d6d6d6;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #4a6b45;
+}
+
+.sidebar a.active {
+  color: #D6d6d6;
+  background-color: #2a3c28;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #202020;
+  color: #d6d6d6;
+  padding: 10px 15px;
+  border: none;
+  
+}
+
+.openbtn:hover {
+ background-color: #2a3c28;
+ transition: background-color 0.3s;
+}
+
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="#" class="active"><i class="fa fa-fw fa-home"></i> Dashboard</a>
+  <a href="#"><Vakken><i class="fa fa-fw fa-book"></i> Vakken</a>
+  <a href="#"><Rooster><i class="fa fa-fw fa-calendar"></i> Rooster</a>
+  <a href="#"><Leaderboard><i class="fa fa-fw fa-trophy"></i> Leaderboard</a>
+  <a href="#"><Bronnen><i class="fa fa-fw fa-file"></i> Bronnen</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="toggleNav()">☰ </button>  
+</div>
+<script>
+function toggleNav() {
+  const sidebar = document.getElementById("mySidebar");
+  const main = document.getElementById("main");
+  const isOpen = sidebar.style.width === "250px";
+
+  sidebar.style.width = isOpen ? "0" : "250px";
+  main.style.marginLeft = isOpen ? "0" : "250px";
+}
+
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+</html> 
