@@ -126,6 +126,18 @@ export async function getUser() {
     return user;
 }
 
+// Debug helper: tells where a saved session was found ('localStorage', 'sessionStorage' or null).
+// Supabase stores its token under a key like 'sb-<project>-auth-token'.
+export function getSessionSource() {
+    const isAuthKey = (key) =>
+        key === MOCK_SESSION_KEY || (key.startsWith('sb-') && key.endsWith('-auth-token'));
+    try {
+        if (Object.keys(localStorage).some(isAuthKey)) return 'localStorage';
+        if (Object.keys(sessionStorage).some(isAuthKey)) return 'sessionStorage';
+    } catch { /* storage blocked */ }
+    return null;
+}
+
 // Log out function.
 export async function logoutUser() {
     if (MOCK) {
