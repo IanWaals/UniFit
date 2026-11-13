@@ -11,7 +11,7 @@ body {
   left: 0;
   width: 0;
   height: 100%;
-  background-color: #111;
+  background-color: #101010;
   overflow: hidden;
   white-space: nowrap;
   transition: 0.5s;
@@ -26,7 +26,7 @@ body {
 
 #sidebar a {
   display: block;
-  color: white;
+  color: E6E6E6;
   text-decoration: none;
   padding: 10px 16px;
   margin: 2px 16px;
@@ -40,13 +40,13 @@ body {
 }
 
 #sidebar a:hover {
-  color: #9CCB8A;
+  color: #668F57;
   transition: 0.5s;
 }
 
 #sidebar a.active-page {
-  color: #9CCB8A;
-  background-color: #2a2d2a;
+  color: #668F57;
+  background-color: #202020;
 }
 
 #sidebar .sidebar-bottom {
@@ -58,8 +58,8 @@ body {
 #menu-button {
   margin: 16px;
   font-size: 20px;
-  color: white;
-  background-color: #111;
+  color: E6E6E6;
+  background-color: #101010;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
@@ -68,7 +68,7 @@ body {
 }
 
 #menu-button:hover {
-  background-color: #9CCB8A;
+  background-color: #202020;
   transition: 0.5s;
 }
 
@@ -81,7 +81,7 @@ h1 {
   margin: 0 auto;
   padding: 12px;
   text-align: center;
-  background-color: #9CCB8A;
+  background-color: #668F57;
 }
 
 .subjects-list {
@@ -90,7 +90,7 @@ h1 {
   margin: 0 auto;
   padding: 0 25px;
   overflow-y: auto;
-  background-color: black;
+  background-color: #101010;
 }
 
 .subjects-list a {
@@ -100,14 +100,14 @@ h1 {
   text-align: center;
   color: #EDEDED;
   text-decoration: none;
-  background-color: #222;
-  border: 1px solid #D9D9D9;
+  background-color: #202020;
+  border: 1px solid #E6E6E6;
   border-radius: 10px;
   transition: 0.5s;
 }
 
 .subjects-list a:hover {
-  background-color: #9CCB8A;
+  background-color: #668F57;
   transition: 0.5s;
 }
 
@@ -120,21 +120,21 @@ h1 {
 
 .card {
   width: 365px;
-  background-color: black;
+  background-color: #101010;
 }
 
 h3 {
   margin: 0;
   padding: 12px;
   text-align: center;
-  background-color: #9CCB8A;
+  background-color: #668F57;
 }
 
 .arrow {
   width: 28px;
   height: 28px;
   color: #EDEDED;
-  background-color: #222;
+  background-color: #202020;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -169,19 +169,19 @@ td {
   padding: 6px;
   font-size: 14px;
   text-align: center;
-  background-color: #222;
-  border-top: 1px solid #D9D9D9;
-  border-bottom: 1px solid #D9D9D9;
+  background-color: #202020;
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
   transition: 0.5s;
 }
 
 td:first-child {
-  border-left: 1px solid #D9D9D9;
+  border-left: 1px solid #E6E6E6;
   border-radius: 8px 0 0 8px;
 }
 
 td:last-child {
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #E6E6E6;
   border-radius: 0 8px 8px 0;
 }
 
@@ -192,7 +192,7 @@ tr:hover td {
 
 .lesson-time {
   width: 45px;
-  border-right: 1px solid #D9D9D9;
+  border-right: 1px solid #E6E6E6;
 }
 
 .lesson-name {
@@ -201,10 +201,10 @@ tr:hover td {
 }
 
 small {
-  color: #aaa;
+  color: #D6D6D6;
 }
 
 .current-lesson td {
-  border-color: #9CCB8A;
+  border-color: #668F57;
   background-color: #384135;
 }
