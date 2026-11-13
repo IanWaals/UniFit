@@ -4,8 +4,8 @@
 import { CONFIG } from './config.js';
 import { loginUser, getSession, setRememberMe } from './api.js';
 
-// Where to go after a successful login (relative, so it works in any subfolder).
-const PORTAL_URL = 'portal.html';
+// Where to go after a successful login: the dashboard at the site root.
+const PORTAL_URL = '/';
 
 // Lockout state is kept in localStorage so a page refresh does not reset the counter.
 // NOTE: this is a UX layer only. Real brute-force protection is the rate limiting

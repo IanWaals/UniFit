@@ -3,7 +3,7 @@
 
 import { supabase, getUser, logoutUser } from './api.js';
 
-const LOGIN_URL = 'login.html';
+const LOGIN_URL = '/auth/login.html';
 
 const portal = document.getElementById('portal');
 const userEmail = document.getElementById('user-email');
