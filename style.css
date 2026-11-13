@@ -26,7 +26,7 @@ body {
 
 #sidebar a {
   display: block;
-  color: E6E6E6;
+  color: #E6E6E6;
   text-decoration: none;
   padding: 10px 16px;
   margin: 2px 16px;
@@ -58,7 +58,7 @@ body {
 #menu-button {
   margin: 16px;
   font-size: 20px;
-  color: E6E6E6;
+  color: #E6E6E6;
   background-color: #101010;
   padding: 10px 15px;
   border: none;
