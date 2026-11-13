@@ -112,7 +112,7 @@ function getTeachers() {
 
 function getLeaderBoard() {
     $conn = dbConnect();
-    $stmt = $conn->query("SELECT full_name, score FROM students WHERE score > 0 ORDER BY score DESC")
+    $stmt = $conn->query("SELECT full_name, score FROM students WHERE score > 0 ORDER BY score DESC");
     $leaderBoard = $stmt->fetchALL(PDO::FETCH_ASSOC);
     return $leaderBoard;
 }
