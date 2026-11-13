@@ -1,10 +1,15 @@
 #include <Arduino.h>
-#include "azure_iot.h"
 #include "config.h"
+#include "azure_iot.h"
 #include <Wire.h>
 #include <Adafruit_PN532.h>
 #include <driver/rtc_io.h>
 #include <esp_sleep.h>
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include <ArduinoMqttClient.h>
+#include <ArduinoJson.h>
+#include <az_iot_hub_client.h>
 
 #define PN532_SDA  (21)
 #define PN532_SCL  (22)
@@ -20,9 +25,15 @@
 const unsigned long INACTIVITY_TIMEOUT = 120000;
 unsigned long lastActivityTime = 0;
 
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+
+const char* iotHubFqdn = IOT_CONFIG_IOTHUB_FQDN;
+const char* iotDeviceId = IOT_CONFIG_DEVICE_ID;
+const char* iotDeviceKey = IOT_CONFIG_DEVICE_KEY;
+
 #define LEDPIN_GREEN 25
 #define LEDPIN_RED   26
-
 
 Adafruit_PN532 nfc(PN532_IRQ, PN532_RST);
 
@@ -153,8 +164,8 @@ static void waitForTagGone() {
 }
 
 /**
- * Reset + SAMConfig + start detection. Retry until IRQ is idle HIGH so EXT0
- * will not fire immediately.
+- Reset + SAMConfig + start detection. Retry until IRQ is idle HIGH so EXT0
+- will not fire immediately.
  */
 static bool armIrqListenerClean() {
   for (int attempt = 1; attempt <= NFC_ARM_RETRIES; attempt++) {
@@ -238,6 +249,14 @@ void setup(void) {
 
   Serial.begin(115200);
   delay(coldBoot ? 300 : 40);
+
+  if (coldBoot) {
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+    }
+    Serial.println("\nConnected to Wi-Fi!");
+  }
 
   Wire.begin(PN532_SDA, PN532_SCL);
 

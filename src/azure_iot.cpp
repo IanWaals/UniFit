@@ -8,7 +8,7 @@
 #include <WiFiClientSecure.h>
 #include <az_core.h>
 #include <az_iot.h>
-#include <azure_ca.h>
+#include "azure_roots.h"
 #include <mbedtls/base64.h>
 #include <mbedtls/md.h>
 #include <string.h>
@@ -197,14 +197,16 @@ static bool connectMqtt() {
     return false;
   }
 
-  wifiClient.setCACert((const char *)ca_pem);
+  // DigiCert G2 (+ Microsoft RSA 2017). SDK azure_ca.h still ships expired Baltimore.
+  wifiClient.setCACert(AZURE_IOT_ROOT_CAS);
   mqttClient.setId(mqttClientId);
   mqttClient.setUsernamePassword(mqttUsername, mqttPassword);
   mqttClient.setKeepAliveInterval(30 * 1000);
 
   Serial.printf("MQTT connecting to %s:%d ...\n", IOT_CONFIG_IOTHUB_FQDN, MQTT_PORT);
   if (!mqttClient.connect(IOT_CONFIG_IOTHUB_FQDN, MQTT_PORT)) {
-    Serial.printf("MQTT connect failed, error=%d\n", mqttClient.connectError());
+    Serial.printf("MQTT connect failed, error=%d (WiFi=%d)\n", mqttClient.connectError(),
+                  WiFi.status());
     return false;
   }
 
@@ -250,11 +252,14 @@ bool azureSendCardUid(const uint8_t *uid, uint8_t uidLength) {
   char uidHex[32];
   formatUidHex(uid, uidLength, uidHex, sizeof(uidHex));
 
+  setenv("TZ", "CET-1CEST,M3.5.0,M10.5.0/3", 1); // Central European Time (CET/CEST)
+  tzset();
+
   const time_t now = time(nullptr);
-char isoTime[32];
-struct tm tmLocal;
-localtime_r(&now, &tmLocal);
-strftime(isoTime, sizeof(isoTime), "%Y-%m-%dT%H:%M:%S%z", &tmLocal);
+  char isoTime[32];
+  struct tm tmLocal;
+  localtime_r(&now, &tmLocal);
+  strftime(isoTime, sizeof(isoTime), "%Y-%m-%dT%H:%M:%S%z", &tmLocal);
 
   JsonDocument doc;
   doc["uid"] = uidHex;
