@@ -1,4 +1,4 @@
-// open and close the sidebar
+
 function toggleMenu() {
   var sidebar = document.getElementById("sidebar");
   var menuButton = document.getElementById("menu-button");
