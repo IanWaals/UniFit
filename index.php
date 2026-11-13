@@ -1,3 +1,12 @@
+<?php
+
+include "src/dbConnect.php";
+$students = getStudents();
+$leaderboard = getLeaderBoard();
+$sampleStudent = $students[0];
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +34,10 @@
   </div>
 </div>
 
-<button id="menu-button" onclick="toggleMenu()">☰</button>
+<div>
+  <button id="menu-button" onclick="toggleMenu()">☰</button>
+  <p>Welcome to UniFit, <?php echo $sampleStudent['full_name'] ?></p>
+</div>
 
 <div id="content">
 
@@ -88,15 +100,13 @@
             <th>Naam</th>
             <th>Score</th>
           </tr>
-          <tr><td>1</td><td>Mark Rutte</td><td>985</td></tr>
-          <tr><td>2</td><td>Willem Alexander</td><td>920</td></tr>
-          <tr><td>3</td><td>Jan Smit</td><td>875</td></tr>
-          <tr><td>4</td><td>Gerard Joling</td><td>830</td></tr>
-          <tr><td>5</td><td>Sierd de Vos</td><td>790</td></tr>
-          <tr><td>6</td><td>Vincent van Gogh</td><td>745</td></tr>
-          <tr><td>7</td><td>Geert Wilders</td><td>700</td></tr>
-          <tr><td>8</td><td>Hans Klok</td><td>655</td></tr>
-          <tr><td>9</td><td>Ben Strik</td><td>610</td></tr>
+          <?php 
+          $counter = 0;
+          foreach($leaderboard as $student) {
+            $counter += 1;
+            ?><tr><td><?php echo $counter; ?></td><td><?php echo $student['full_name']; ?></td><td><?php echo $student['score']; ?></td></tr><?php
+          }
+          ?>
         </table>
       </div>
     </div>
