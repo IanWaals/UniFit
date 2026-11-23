@@ -8,6 +8,13 @@ return [
     'supabase_anon_key' => 'YOUR_ANON_KEY',
     'app_version'       => '2.0.0',
 
+    // URLs as the browser sees them. For local testing (./test.sh) keep the defaults.
+    // On the server with the login under /auth/ and the dashboard at /, use:
+    //   'after_login_url' => '/',  'login_url' => '/auth/login.php',  'logout_url' => '/auth/logout.php'
+    'after_login_url' => 'portal.php',      // where to go after logging in
+    'login_url'       => '/login.php',      // used by require_login.php to send visitors to the login page
+    'logout_url'      => '/logout.php',     // used by the logout button on protected pages
+
     // Test mode: fakes the Supabase login so the page can be tested without a server.
     // SET TO false BEFORE DEPLOYING.
     // Test accounts (any other email/password counts as wrong credentials):

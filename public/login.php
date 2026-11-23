@@ -12,11 +12,10 @@ start_session();
 send_security_headers();
 
 $sec = config()['security'];
-const PORTAL_URL = 'portal.php';
 
 // ---------- 1. Already logged in? (Flowchart: Valid session cookie?) ----------
 if (has_auth()) {
-    redirect(PORTAL_URL);
+    redirect(config()['after_login_url']);
 }
 
 // ---------- 2. Form submitted: run the login logic ----------
@@ -67,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['old_email'], $_SESSION['lockout_email']);
 
     flash('Welcome back!', 'success');
-    redirect(PORTAL_URL);
+    redirect(config()['after_login_url']);
 }
 
 // ---------- Render the page ----------
