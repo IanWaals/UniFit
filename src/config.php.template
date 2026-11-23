@@ -1,0 +1,41 @@
+<?php
+// src/config.php.template
+// Copy this file to src/config.php (which is gitignored) and fill in the real values.
+// This file lives OUTSIDE the web root (public/), so the browser can never download it.
+
+return [
+    'supabase_url'      => 'http://YOUR_SUPABASE_URL',
+    'supabase_anon_key' => 'YOUR_ANON_KEY',
+    'app_version'       => '2.0.0',
+
+    // Test mode: fakes the Supabase login so the page can be tested without a server.
+    // SET TO false BEFORE DEPLOYING.
+    // Test accounts (any other email/password counts as wrong credentials):
+    //   test@unifit.nl    / Test1234!  -> successful login
+    //   offline@unifit.nl / anything   -> simulates "server unreachable"
+    //   limit@unifit.nl   / anything   -> simulates the Supabase rate limit (429)
+    'mock_auth' => false,
+
+    // Set to true ONLY if PHP runs behind your own reverse proxy (nginx, Caddy, ...).
+    // Then X-Forwarded-For / X-Forwarded-Proto are trusted for the client IP and HTTPS detection.
+    // If PHP is directly reachable, leave it false, otherwise attackers can fake their IP.
+    'trust_proxy' => false,
+
+    // Where the server keeps the login-attempt counters. Must be writable by PHP
+    // and must NOT be inside public/.
+    'storage_dir' => __DIR__ . '/../storage',
+
+    'security' => [
+        'max_tries'             => 3,
+        'base_timeout_sec'      => 30,
+        'timeout_increment_sec' => 30,
+        'max_timeout_sec'       => 3600, // lockout never lasts longer than 1 hour
+
+        'allow_session_cookies' => true, // show "Keep me signed in"
+        'remember_me_days'      => 30,   // how long "Keep me signed in" lasts
+        'session_idle_minutes'  => 120,  // normal sessions expire after this much inactivity
+
+        'allow_signup'          => false, // Allow account creation. Disabled for now.
+        'allow_password_reset'  => true,  // Show the "Forgot your password?" link.
+    ],
+];

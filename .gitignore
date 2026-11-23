@@ -4,6 +4,14 @@
 # Real config holds the Supabase URL + key. Commit the template only.
 frontend/js/config.js
 !frontend/js/config.js.template
+<<<<<<< HEAD
+=======
+src/config.php
+!src/config.php.template
+
+# Server-side login attempt counters (PHP version)
+storage/
+>>>>>>> e6f02c9 (PHP)
 .env
 .env.*
 !.env.example
