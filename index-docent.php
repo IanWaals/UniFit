@@ -111,12 +111,6 @@ $sampleTeacher = $teachers[0];
             }
           }
           ?>
-          <!-- <tr><td>Hans Klok</td><td>Vraag</td><td>16 sec</td></tr>
-          <tr><td>Réne le Blanc</td><td>Vraag</td><td>2 min</td></tr>
-          <tr><td>Rico verhoeven</td><td>Nakijken</td><td>5 min</td></tr>
-          <tr><td>Vladimir Putin</td><td>Vraag</td><td>10 min</td></tr>
-          <tr><td>Ronnie Flex</td><td>Nakijken</td><td>12 min</td></tr>
-          <tr><td>Rapper Sjors</td><td>Nakijken</td><td>16 min</td></tr> -->
         </table>
       </div>
     </div>
