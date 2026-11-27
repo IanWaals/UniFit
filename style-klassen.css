@@ -15,7 +15,7 @@ body {
   left: 0;
   width: 0;
   height: 100%;
-  background-color: #111;
+  background-color: #101010;
   overflow: hidden;
   white-space: nowrap;
   transition: 0.5s;
@@ -24,7 +24,7 @@ body {
 #sidebar .logo {
   font-size: 32px;
   font-weight: bold;
-  color: #9CCB8A;
+  color: #668F57;
   padding: 20px 32px 30px;
 }
 
@@ -44,13 +44,13 @@ body {
 }
 
 #sidebar a:hover {
-  color: #9CCB8A;
+  color: #668F57;
   transition: 0.5s;
 }
 
 #sidebar a.active-page {
-  color: #9CCB8A;
-  background-color: #2a2d2a;
+  color: #668F57;
+  background-color: #202020;
 }
 
 #sidebar .sidebar-bottom {
@@ -63,7 +63,7 @@ body {
   margin: 16px;
   font-size: 20px;
   color: white;
-  background-color: #111;
+  background-color: #101010;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
@@ -72,7 +72,7 @@ body {
 }
 
 #menu-button:hover {
-  background-color: #9CCB8A;
+  background-color: #668F57;
   transition: 0.5s;
 }
 
@@ -85,7 +85,7 @@ h1 {
   margin: 0 auto;
   padding: 12px;
   text-align: center;
-  background-color: #9CCB8A;
+  background-color: #668F57;
 }
 
 .subjects {
@@ -104,15 +104,15 @@ h1 {
 }
 
 div.gallery {
-  background-color: #222;
-  border: 1px solid #D9D9D9;
+  background-color: #202020;
+  border: 1px solid #D6D6D6;
   border-radius: 10px;
   overflow: hidden;
   transition: 0.5s;
 }
 
 div.gallery:hover {
-  border: 1px solid #9CCB8A;
+  border: 1px solid #668F57;
 }
 
 div.gallery img {
@@ -125,14 +125,14 @@ div.gallery img {
 div.desc {
   padding: 12px 15px;
   color: #EDEDED;
-  background-color: #222;
-  border-top: 1px solid #D9D9D9;
+  background-color: #202020;
+  border-top: 1px solid #D6D6D6;
   transition: 0.5s;
 }
 
 div.gallery:hover div.desc {
   color: black;
-  background-color: #9CCB8A;
+  background-color: #668F57;
 }
 
 .level {
