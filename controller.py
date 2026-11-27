@@ -88,11 +88,22 @@ def handle_joystick(x, y):
     keyboard.syn()
 
 
+current_button = 0
+
 def handle_button(button):
-    if button:
+    global current_button
+
+    if button == current_button:
+        return
+
+    current_button = button
+
+    if button == 1:
         keyboard.write(ecodes.EV_KEY, ecodes.KEY_SPACE, 1)
+        print("[KEY] Pressed SPACE")
     else:
         keyboard.write(ecodes.EV_KEY, ecodes.KEY_SPACE, 0)
+        print("[KEY] Released SPACE")
 
     keyboard.syn()
 
