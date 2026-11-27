@@ -1,0 +1,145 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #344B32, #1B251C);
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #111;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: 0.5s;
+}
+
+#sidebar .logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #9CCB8A;
+  padding: 20px 32px 30px;
+}
+
+#sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  margin: 2px 16px;
+  border-radius: 8px;
+  transition: 0.5s;
+}
+
+#sidebar a i {
+  width: 20px;
+  margin-right: 10px;
+}
+
+#sidebar a:hover {
+  color: #9CCB8A;
+  transition: 0.5s;
+}
+
+#sidebar a.active-page {
+  color: #9CCB8A;
+  background-color: #2a2d2a;
+}
+
+#sidebar .sidebar-bottom {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+#menu-button {
+  margin: 16px;
+  font-size: 20px;
+  color: white;
+  background-color: #111;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#menu-button:hover {
+  background-color: #9CCB8A;
+  transition: 0.5s;
+}
+
+#main {
+  margin: 0 40px 40px 40px;
+  color: white;
+  transition: 0.5s;
+}
+
+.pagina {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+#main h1 {
+  color: #111;
+  background-color: #9CCB8A;
+  padding: 10px;
+  border-radius: 8px;
+  width: 639px;
+}
+
+.bronnen-container {
+  display: flex;
+  gap: 20px;
+}
+
+.bron {
+  flex: 1;
+  min-height: 500px;
+  max-width: 700px;
+  background-color: #111;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.bron h2 {
+  color: #9CCB8A;
+  margin-top: 0;
+  border-bottom: 1px solid #ffffff;
+}
+
+.bron p {
+  color: white;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.bronnen-lijst {
+  width: 200px;
+  height: fit-content;
+  background-color: #111;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.bron-knop {
+  display: block;
+  width: 100%;
+  color: white;
+  background-color: #2a2d2a;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.bron-knop:hover {
+  background-color: #9CCB8A;
+  transition: 0.5s;
+}
