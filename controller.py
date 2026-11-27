@@ -2,7 +2,7 @@
 import asyncio
 import signal
 from bleak import BleakClient, BleakScanner
-from pynput.keyboard import Controller, Key
+from evdev import UInput, ecodes
 
 # ==========================================
 # BLE CONFIGURATION
@@ -18,32 +18,38 @@ UUID_JOYSTICK = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 # ==========================================
 
 DEADZONE = 25
-
 NEUTRAL_COMMAND = None
 
 # ==========================================
-# KEYBOARD
+# VIRTUAL KEYBOARD
 # ==========================================
 
-keyboard = Controller()
+key_map = {
+    "w": ecodes.KEY_W,
+    "a": ecodes.KEY_A,
+    "s": ecodes.KEY_S,
+    "d": ecodes.KEY_D,
+}
+
+keyboard = UInput(
+    {ecodes.EV_KEY: list(key_map.values())},
+    name="UniFit Virtual Keyboard"
+)
+
 current_key = None
 
 
 def release_all():
     global current_key
 
-    for key in ["w", "a", "s", "d"]:
-        try:
-            keyboard.release(key)
-        except Exception:
-            pass
+    for key_code in key_map.values():
+        keyboard.write(ecodes.EV_KEY, key_code, 0)
 
+    keyboard.syn()
     current_key = None
 
 
 def joystick_to_wasd(x, y):
-    """Convert joystick axes into one WASD command."""
-
     if abs(x) <= DEADZONE and abs(y) <= DEADZONE:
         return NEUTRAL_COMMAND
 
@@ -58,21 +64,28 @@ def handle_joystick(x, y):
 
     new_key = joystick_to_wasd(x, y)
 
-    # Nothing changed: keep the current key held.
     if new_key == current_key:
         return
 
-    # Release the previous key.
     if current_key is not None:
-        keyboard.release(current_key)
+        keyboard.write(
+            ecodes.EV_KEY,
+            key_map[current_key],
+            0
+        )
         print(f"[KEY] Released {current_key.upper()}")
 
     current_key = new_key
 
-    # Press the new key.
     if current_key is not None:
-        keyboard.press(current_key)
+        keyboard.write(
+            ecodes.EV_KEY,
+            key_map[current_key],
+            1
+        )
         print(f"[KEY] Pressed {current_key.upper()}")
+
+    keyboard.syn()
 
 
 # ==========================================
@@ -83,7 +96,6 @@ def joystick_notification(sender, data):
     if len(data) != 3:
         return
 
-    # ESP32 sends signed int8 values as bytes.
     x = data[0] if data[0] < 128 else data[0] - 256
     y = data[1] if data[1] < 128 else data[1] - 256
 
@@ -116,7 +128,6 @@ async def run_controller():
             print(f"[BLE] Found {device.address}")
 
             async with BleakClient(device) as client:
-
                 print("[BLE] Connected!")
 
                 await client.start_notify(
@@ -126,7 +137,6 @@ async def run_controller():
 
                 print("[SYSTEM] Controller ready.")
 
-                # Keep connection alive.
                 while client.is_connected:
                     await asyncio.sleep(0.5)
 
@@ -149,7 +159,6 @@ async def run_controller():
 
 async def main():
     loop = asyncio.get_running_loop()
-
     stop_event = asyncio.Event()
 
     for sig in (signal.SIGINT, signal.SIGTERM):
@@ -177,3 +186,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     finally:
         release_all()
+        keyboard.close()
