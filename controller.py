@@ -29,6 +29,7 @@ key_map = {
     "a": ecodes.KEY_A,
     "s": ecodes.KEY_S,
     "d": ecodes.KEY_D,
+    "space": ecodes.KEY_SPACE
 }
 
 keyboard = UInput(
@@ -84,6 +85,14 @@ def handle_joystick(x, y):
             1
         )
         print(f"[KEY] Pressed {current_key.upper()}")
+    keyboard.syn()
+
+
+def handle_button(button):
+    if button:
+        keyboard.write(ecodes.EV_KEY, ecodes.KEY_SPACE, 1)
+    else:
+        keyboard.write(ecodes.EV_KEY, ecodes.KEY_SPACE, 0)
 
     keyboard.syn()
 
@@ -104,6 +113,7 @@ def joystick_notification(sender, data):
     print(f"[JOY] X={x}, Y={y}, Button={button}")
 
     handle_joystick(x, y)
+    handle_button(button)
 
 
 # ==========================================
